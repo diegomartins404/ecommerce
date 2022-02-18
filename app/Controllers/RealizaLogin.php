@@ -3,14 +3,13 @@
   namespace App\Controllers;
 
   use App\Controllers\Traits\FlashMessageTrait;
-  use App\Models\Usuario;
-
-  use Nyholm\Psr7\Response;
-  use Psr\Http\Message\ServerRequestInterface;
-  use Psr\Http\Message\ResponseInterface;
+use App\Domain\Model\User;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-  class RealizaLogin implements RequestHandlerInterface{
+class RealizeLogin implements RequestHandlerInterface{
     use FlashMessageTrait;
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
@@ -19,14 +18,14 @@ use Psr\Http\Server\RequestHandlerInterface;
         'email',
         FILTER_SANITIZE_EMAIL
       );
-      $senha = filter_input(
+      $password = filter_input(
         INPUT_POST,
         'senha', 
         FILTER_SANITIZE_STRING
       );
-      $usuario = new Usuario();
-      $usuarioExiste = $usuario->Recupera($email);
-      if (!$usuarioExiste || !$usuario->VerificaSenha($senha)){
+      $user = new User();
+      $userExists = $user->Recupera($email);
+      if (!$userExists || !$user->passwordVerify($password)){
         $this->defineMensagem('E-mail ou senha inválidos', 'dark');
         return new Response(
           200, 

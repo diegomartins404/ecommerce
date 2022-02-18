@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\Traits\FlashMessageTrait;
-use App\Models\Produto;
+use App\Domain\Model\Produto;
 use Nyholm\Psr7\Response;
 use Psr\Http\Server\RequestHandlerInterface;
 

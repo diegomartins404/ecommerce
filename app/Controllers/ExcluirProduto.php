@@ -1,14 +1,20 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\Produto;
 use App\Controllers\Traits\FlashMessageTrait;
+use App\Domain\Model\Produto;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class ExcluirProduto implements RequestHandlerInterface{
+class ExcluirProduto implements RequestHandlerInterface
+{
+  private $produto;
+  public function __construct(Produto $produto)
+  {
+    $this->produto = $produto;
+  }
 
   use FlashMessageTrait;
 
@@ -27,7 +33,7 @@ class ExcluirProduto implements RequestHandlerInterface{
       );
     }
 
-    $produtoObj = new Produto();
+    $produtoObj = $this->produto;
     $produtoObj->Excluir($id);
     $this->defineMensagem('Produto excluído com sucesso!', 'success');
     return new Response(
@@ -36,7 +42,6 @@ class ExcluirProduto implements RequestHandlerInterface{
         'Location' => '/listar-produtos'
       ]
     );
-    
   }
 }
 ?>

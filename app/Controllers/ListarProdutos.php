@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\Produto;
 use App\Controllers\Traits\RenderizadorHtmlTrait;
+use App\Domain\Model\Produto;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

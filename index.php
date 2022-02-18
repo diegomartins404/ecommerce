@@ -6,6 +6,7 @@ use Nyholm\Psr7Server\ServerRequestCreator;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Container\ContainerInterface;
 
 use Nyholm\Psr7\MessageTrait;
 
@@ -44,11 +45,14 @@ require_once('./vendor/autoload.php');
   
     $request = $creator->fromGlobals();
 
-
     $classeControladora = $rotas[$caminho]; 
     $controlador = new $classeControladora();
-    $resposta = $controlador->handle($request);
 
+    $container = require __DIR__ . '/config/dependencies.php';
+    $controlador = $container->get($classeControladora);
+
+    $resposta = $controlador->handle($request);
+    
     $headers = $resposta->getHeaders();
     foreach($headers as $name => $values){
       foreach($values as $value){
