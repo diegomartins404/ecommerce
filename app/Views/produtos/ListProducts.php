@@ -11,20 +11,20 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach($produtos as $produto): ?>
+    <?php foreach($products as $produto): ?>
       <tr class="align-middle">
-        <td><?= $produto['id']; ?></td>
-        <td><?= $produto['nome']; ?></td>
-        <td><?= $produto['valor']; ?></td>
-        <td><?= $produto['qtd']; ?></td>
+        <td><?= $produto->getId(); ?></td>
+        <td><?= $produto->getName(); ?></td>
+        <td><?= $produto->getValue(); ?></td>
+        <td><?= $produto->getQuantity(); ?></td>
         <td> 
           <div class="d-flex justify-content-end m-0">
-            <a href="/atualizar-produto?id=<?= $produto['id']; ?>" class="btn btn-warning"><i class="far fa-edit"></i></a>
+            <a href="/atualizar-produto?id=<?= $produto->getId(); ?>" class="btn btn-warning"><i class="far fa-edit"></i></a>
           </div>
         </td>
         <td> 
           <div class="d-flex justify-content-start m-0">
-            <a href="/excluir-produto?id=<?= $produto['id']; ?>" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+            <a href="/excluir-produto?id=<?= $produto->getId(); ?>" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
           </div>
         </td>
       </tr>

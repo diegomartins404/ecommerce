@@ -2,7 +2,8 @@
 
 namespace App\Controllers;
 use App\Controllers\Traits\FlashMessageTrait;
-use App\Domain\Model\Produto;
+use App\Domain\Infrastructure\Repository\PdoProductRepository;
+use App\Domain\Model\Product;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -10,10 +11,10 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class ExcluirProduto implements RequestHandlerInterface
 {
-  private $produto;
-  public function __construct(Produto $produto)
+  private $productRepository;
+  public function __construct()
   {
-    $this->produto = $produto;
+    $this->productRepository = new PdoProductRepository();
   }
 
   use FlashMessageTrait;
@@ -33,8 +34,7 @@ class ExcluirProduto implements RequestHandlerInterface
       );
     }
 
-    $produtoObj = $this->produto;
-    $produtoObj->Excluir($id);
+    $this->productRepository->delete($id);
     $this->defineMensagem('Produto excluído com sucesso!', 'success');
     return new Response(
       200,

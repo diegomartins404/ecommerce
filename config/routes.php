@@ -2,11 +2,11 @@
   use App\Controllers\{
     FormularioInserirProduto, 
     PersistirProduto,
-    ListarProdutos,
+    ListProducts,
     ExcluirProduto,
     AtualizarProduto,
     FormularioLogin,
-    RealizaLogin,
+    RealizeLogin,
     Deslogar,
 
 
@@ -14,11 +14,11 @@
   $rotas = [
     "/novo-produto" => FormularioInserirProduto::class,
     "/persistir-produto" => PersistirProduto::class,
-    "/listar-produtos" => ListarProdutos::class,
+    "/listar-produtos" => ListProducts::class,
     "/excluir-produto" => ExcluirProduto::class,
     "/atualizar-produto" => AtualizarProduto::class,
     "/login" => FormularioLogin::class,
-    "/realiza-login" => RealizaLogin::class,
+    "/realiza-login" => RealizeLogin::class,
     "/logout" => Deslogar::class,
 
   ];

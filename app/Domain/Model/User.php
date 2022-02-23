@@ -1,9 +1,14 @@
 <?php
 namespace App\Domain\Model;
 
+use App\Domain\Repository\UserRepository;
+
 class User
 {
-    public function __construct(?int $id, ?string $name, ?string $email, ?string $password)
+    public function __construct(int $id = null,
+                                string $name = null,
+                                string $email = null,
+                                string $password = null)
     {
         $this->setId($id);
         $this->setName($name);
@@ -11,10 +16,10 @@ class User
         $this->setPassword($password);
     }
 
-    private int $id;
-    private string $name;
-    private string $email;
-    private string $password;
+    private $id;
+    private $name;
+    private $email;
+    private $password;
 
     public function setId($value)
     {
@@ -33,19 +38,19 @@ class User
       $this->password = $value;
     }
 
-    public function getId(): int
+    public function getId()
     {
       return $this->id;
     }
-    public function getName(): string
+    public function getName()
     {
       return $this->name;
     }
-    public function getEmail(): string
+    public function getEmail()
     {
       return $this->email;
     }
-    public function getPassword(): string
+    public function getPassword()
     {
       return $this->password;
     }

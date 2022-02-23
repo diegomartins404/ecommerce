@@ -11,11 +11,11 @@ class ConnectionCreator
     const PASSWORD = "10sa!@#SA";
     const DBNAME = "dbEcommerce";
 
-    public function createConnection(PDO $connection): PDO
+    public function createConnection(): PDO
     {
-        return new PDO("mysql:dbname=" . Sql::DBNAME . ";host=" . Sql::HOSTNAME,
-            Sql::USERNAME,
-            Sql::PASSWORD
+        return new PDO("mysql:dbname=" . SELF::DBNAME . ";host=" . SELF::HOSTNAME,
+            SELF::USERNAME,
+            SELF::PASSWORD
         );
     }
 }

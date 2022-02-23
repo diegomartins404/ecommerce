@@ -32,8 +32,6 @@ require_once('./vendor/autoload.php');
       exit();
     }
 
-
-
     $psr17Factory = new Psr17Factory();
 
     $creator = new \Nyholm\Psr7Server\ServerRequestCreator(

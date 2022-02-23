@@ -7,8 +7,7 @@
       extract($dados);
       ob_start();
       require __DIR__ . '/../../Views/' . $caminhoTemplate;
-      $html = ob_get_clean();
-      return $html;
+      return $html = ob_get_clean();
     }
   }
 ?>
